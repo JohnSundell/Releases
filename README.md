@@ -37,7 +37,7 @@ print(releases.last)
 
 ### For command line tools
 
-- Add `.Package(url: "https://github.com/JohnSundell/Releases.git", majorVersion: 1)` to your `Package.swift` file.
+- Add `.Package(url: "git@github.com:JohnSundell/Releases.git", majorVersion: 1)` to your `Package.swift` file.
 - Update your packages using `$ swift package update`.
 
 ## Help, feedback or suggestions?
