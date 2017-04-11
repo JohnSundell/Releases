@@ -1,7 +1,15 @@
-// swift-tools-version:3.1
+/**
+ *  Releases
+ *  Copyright (c) John Sundell 2017
+ *  Licensed under the MIT license. See LICENSE file.
+ */
 
 import PackageDescription
 
 let package = Package(
-    name: "Releases"
+    name: "Releases",
+    dependencies: [
+        .Package(url: "https://github.com/johnsundell/shellout.git", majorVersion: 1),
+        .Package(url: "https://github.com/johnsundell/require.git", majorVersion: 1)
+    ]
 )
