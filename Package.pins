@@ -4,13 +4,13 @@
     {
       "package": "Require",
       "reason": null,
-      "repositoryURL": "https://github.com/johnsundell/require.git",
-      "version": "1.0.1"
+      "repositoryURL": "git@github.com:johnsundell/require.git",
+      "version": "1.0.2"
     },
     {
       "package": "ShellOut",
       "reason": null,
-      "repositoryURL": "https://github.com/johnsundell/shellout.git",
+      "repositoryURL": "git@github.com:johnsundell/shellout.git",
       "version": "1.1.0"
     }
   ],
