@@ -53,6 +53,15 @@ class VersionTests: XCTestCase {
         XCTAssertEqual(version.suffix, ".alpha")
     }
 
+    func testParsingVersionWithUnwantedSuffix() throws {
+        let version = try Version(string: "3.0.6^{}")
+
+        XCTAssertEqual(version.major, 3)
+        XCTAssertEqual(version.minor, 0)
+        XCTAssertEqual(version.patch, 6)
+        XCTAssertNil(version.suffix)
+    }
+
     func testParsingEmptyStringThrows() throws {
         let expectedError = Releases.Error.unrecognizedVersionComponentFormat("")
         assert(try Version(string: ""), throwsError: expectedError)

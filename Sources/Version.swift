@@ -70,7 +70,9 @@ public extension Version {
         if suffixComponents.count > 1 {
             if let lastSuffixComponent = suffixComponents.last {
                 if !lastSuffixComponent.isEmpty {
-                    suffix = lastSuffixComponent
+                    if lastSuffixComponent != "^{}" {
+                        suffix = lastSuffixComponent
+                    }
                 }
             }
         }
