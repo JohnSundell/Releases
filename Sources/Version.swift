@@ -10,18 +10,21 @@ import Foundation
 public struct Version {
     /// The major version of the release
     public var major: Int
-    // The minor version of the release (0 if missing)
+    /// The minor version of the release (0 if missing)
     public var minor: Int
-    // The patch version of the release (0 if missing)
+    /// The patch version of the release (0 if missing)
     public var patch: Int
-    // Any suffix after the release's semantic version number (such as "-beta")
+    /// Any prefix before the release's semantic version number (such as "v")
+    public var prefix: String?
+    /// Any suffix after the release's semantic version number (such as "-beta")
     public var suffix: String?
 
     /// Initialize an instace with given version components
-    public init(major: Int, minor: Int = 0, patch: Int = 0, suffix: String? = nil) {
+    public init(major: Int, minor: Int = 0, patch: Int = 0, prefix: String? = nil, suffix: String? = nil) {
         self.major = major
         self.minor = minor
         self.patch = patch
+        self.prefix = prefix
         self.suffix = suffix
     }
 }
@@ -30,13 +33,7 @@ public struct Version {
 public extension Version {
     /// Convert the version into a string (Equivalent of "\(version)")
     var string: String {
-        var string = "\(major).\(minor).\(patch)"
-
-        if let suffix = suffix {
-            string.append(suffix)
-        }
-
-        return string
+        return (prefix ?? "") + "\(major).\(minor).\(patch)" + (suffix ?? "")
     }
 
     /**
@@ -51,9 +48,22 @@ public extension Version {
         patch = 0
 
         let components = string.components(separatedBy: ".")
+        let firstComponent = components[0]
 
-        major = try parse(component: components[0])
-        var parsedString = "\(major)"
+        major = try parse(component: firstComponent)
+
+        let majorString = String(major)
+        let majorStringLength = majorString.distance(from: majorString.startIndex,
+                                                     to: majorString.endIndex)
+
+        let prefixEndIndex = firstComponent.index(firstComponent.endIndex, offsetBy: -majorStringLength)
+        let prefixString = firstComponent.substring(to: prefixEndIndex)
+
+        if prefixString.characters.count > 0 {
+            prefix = prefixString
+        }
+
+        var parsedString = prefixString + majorString
 
         if components.count > 1 {
             minor = try parse(component: components[1])

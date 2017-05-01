@@ -42,6 +42,7 @@ class VersionTests: XCTestCase {
         XCTAssertEqual(version.minor, 2)
         XCTAssertEqual(version.patch, 5)
         XCTAssertEqual(version.suffix, "-beta")
+        XCTAssertEqual(version.string, "1.2.5-beta")
     }
 
     func testParsingVersionWithPointSuffix() throws {
@@ -51,6 +52,18 @@ class VersionTests: XCTestCase {
         XCTAssertEqual(version.minor, 2)
         XCTAssertEqual(version.patch, 5)
         XCTAssertEqual(version.suffix, ".alpha")
+        XCTAssertEqual(version.string, "1.2.5.alpha")
+    }
+
+    func testParsingVersionWithPrefix() throws {
+        let version = try Version(string: "v3.2.1")
+
+        XCTAssertEqual(version.prefix, "v")
+        XCTAssertEqual(version.major, 3)
+        XCTAssertEqual(version.minor, 2)
+        XCTAssertEqual(version.patch, 1)
+        XCTAssertNil(version.suffix)
+        XCTAssertEqual(version.string, "v3.2.1")
     }
 
     func testParsingVersionWithUnwantedSuffix() throws {
