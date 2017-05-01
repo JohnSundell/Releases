@@ -23,12 +23,12 @@ public class Releases {
     public static func versions(for url: URL) throws -> [Version] {
         let lines = try string(from: url).components(separatedBy: "\n")
 
-        return try lines.map { line in
+        return try lines.flatMap { line in
             guard let tag = line.components(separatedBy: "refs/tags/").last else {
                 throw Error.unrecognizedTagFormat(line)
             }
 
-            return try Version(string: tag)
+            return try? Version(string: tag)
         }
     }
 
