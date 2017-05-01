@@ -11,19 +11,34 @@ public struct Version {
     /// The major version of the release
     public var major: Int
     /// The minor version of the release (0 if missing)
-    public var minor: Int
+    public var minor = 0
     /// The patch version of the release (0 if missing)
-    public var patch: Int
+    public var patch = 0
     /// Any prefix before the release's semantic version number (such as "v")
     public var prefix: String?
     /// Any suffix after the release's semantic version number (such as "-beta")
     public var suffix: String?
 
+    fileprivate var componentCount = 1
+
     /// Initialize an instace with given version components
-    public init(major: Int, minor: Int = 0, patch: Int = 0, prefix: String? = nil, suffix: String? = nil) {
+    public init(major: Int,
+                minor: Int? = nil,
+                patch: Int? = nil,
+                prefix: String? = nil,
+                suffix: String? = nil) {
         self.major = major
-        self.minor = minor
-        self.patch = patch
+
+        if let minor = minor {
+            self.minor = minor
+            componentCount += 1
+        }
+
+        if let patch = patch {
+            self.patch = patch
+            componentCount += 1
+        }
+
         self.prefix = prefix
         self.suffix = suffix
     }
@@ -33,7 +48,21 @@ public struct Version {
 public extension Version {
     /// Convert the version into a string (Equivalent of "\(version)")
     var string: String {
-        return (prefix ?? "") + "\(major).\(minor).\(patch)" + (suffix ?? "")
+        var string = (prefix ?? "") + String(major)
+
+        if componentCount > 1 {
+            string.append(".\(minor)")
+        }
+
+        if componentCount > 2 {
+            string.append(".\(patch)")
+        }
+
+        if let suffix = suffix {
+            string.append(suffix)
+        }
+
+        return string
     }
 
     /**
@@ -44,8 +73,6 @@ public extension Version {
      */
     init(string: String) throws {
         major = 0
-        minor = 0
-        patch = 0
 
         let components = string.components(separatedBy: ".")
         let firstComponent = components[0]
@@ -67,11 +94,13 @@ public extension Version {
 
         if components.count > 1 {
             minor = try parse(component: components[1])
+            componentCount += 1
             parsedString.append(".\(minor)")
         }
 
         if components.count > 2 {
             patch = try parse(component: components[2])
+            componentCount += 1
             parsedString.append(".\(patch)")
         }
 

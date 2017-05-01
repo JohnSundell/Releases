@@ -75,6 +75,24 @@ class VersionTests: XCTestCase {
         XCTAssertNil(version.suffix)
     }
 
+    func testOriginalStringIntact() throws {
+        let singleComponentVersion = try Version(string: "4")
+        XCTAssertEqual(singleComponentVersion.major, 4)
+        XCTAssertEqual(singleComponentVersion.string, "4")
+
+        let dualComponentVersion = try Version(string: "3.0")
+        XCTAssertEqual(dualComponentVersion.major, 3)
+        XCTAssertEqual(dualComponentVersion.minor, 0)
+        XCTAssertEqual(dualComponentVersion.string, "3.0")
+
+        let dualComponentVersionWithPrefixAndSuffix = try Version(string: "v5.1beta")
+        XCTAssertEqual(dualComponentVersionWithPrefixAndSuffix.major, 5)
+        XCTAssertEqual(dualComponentVersionWithPrefixAndSuffix.minor, 1)
+        XCTAssertEqual(dualComponentVersionWithPrefixAndSuffix.prefix, "v")
+        XCTAssertEqual(dualComponentVersionWithPrefixAndSuffix.suffix, "beta")
+        XCTAssertEqual(dualComponentVersionWithPrefixAndSuffix.string, "v5.1beta")
+    }
+
     func testParsingEmptyStringThrows() throws {
         let expectedError = Releases.Error.unrecognizedVersionComponentFormat("")
         assert(try Version(string: ""), throwsError: expectedError)
