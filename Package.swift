@@ -9,7 +9,7 @@ import PackageDescription
 let package = Package(
     name: "Releases",
     dependencies: [
-        .Package(url: "git@github.com:johnsundell/shellout.git", majorVersion: 1),
-        .Package(url: "git@github.com:johnsundell/require.git", majorVersion: 1)
+        .Package(url: "https://github.com/JohnSundell/ShellOut.git", majorVersion: 1),
+        .Package(url: "https://github.com/JohnSundell/Require.git", majorVersion: 1)
     ]
 )
