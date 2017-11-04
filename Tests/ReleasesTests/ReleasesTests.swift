@@ -33,7 +33,7 @@ class ReleasesTests: XCTestCase {
     // MARK: - Tests
 
     func testResolvingVersionsForRemoteRepository() throws {
-        let url = URL(string: "git@github.com:johnsundell/unbox.git").require()
+        let url = URL(string: "https://github.com/johnsundell/unbox.git").require()
         let versions = try Releases.versions(for: url)
 
         // We don't want to make any assumptions about future versions
