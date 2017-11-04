@@ -80,8 +80,8 @@ class ReleasesTests: XCTestCase {
 extension ReleasesTests {
     static var allTests: [(String, (ReleasesTests) -> () throws -> Void)] {
         return [
-            ("testInvalidCommandThrows", testResolvingVersionsForRemoteRepository),
-            ("testInvalidCommandThrows", testResolvingVersionsForLocalRepository)
+            ("testResolvingVersionsForRemoteRepository", testResolvingVersionsForRemoteRepository),
+            ("testResolvingVersionsForLocalRepository", testResolvingVersionsForLocalRepository)
         ]
     }
 }
