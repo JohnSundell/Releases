@@ -76,3 +76,12 @@ class ReleasesTests: XCTestCase {
         XCTAssertEqual(lastStableVersion, Version(major: 1, minor: 1))
     }
 }
+
+extension ReleasesTests {
+    static var allTests: [(String, (ReleasesTests) -> () throws -> Void)] {
+        return [
+            ("testInvalidCommandThrows", testResolvingVersionsForRemoteRepository),
+            ("testInvalidCommandThrows", testResolvingVersionsForLocalRepository)
+        ]
+    }
+}
