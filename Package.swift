@@ -1,3 +1,5 @@
+// swift-tools-version:4.0
+
 /**
  *  Releases
  *  Copyright (c) John Sundell 2017
@@ -8,8 +10,22 @@ import PackageDescription
 
 let package = Package(
     name: "Releases",
+    products: [
+        .library(name: "Releases", targets: ["Releases"])
+    ],
     dependencies: [
-        .Package(url: "https://github.com/JohnSundell/ShellOut.git", majorVersion: 1),
-        .Package(url: "https://github.com/JohnSundell/Require.git", majorVersion: 1)
+        .package(url: "https://github.com/JohnSundell/ShellOut.git", from: "1.0.0"),
+        .package(url: "https://github.com/JohnSundell/Require.git", from: "1.0.0")
+    ],
+    targets: [
+        .target(
+            name: "Releases",
+            dependencies: ["ShellOut", "Require"],
+            path: "Sources"
+        ),
+        .testTarget(
+            name: "ReleasesTests",
+            dependencies: ["Releases"]
+        )
     ]
 )

@@ -33,7 +33,7 @@ class ReleasesTests: XCTestCase {
     // MARK: - Tests
 
     func testResolvingVersionsForRemoteRepository() throws {
-        let url = URL(string: "git@github.com:johnsundell/unbox.git").require()
+        let url = URL(string: "https://github.com/johnsundell/unbox.git").require()
         let versions = try Releases.versions(for: url)
 
         // We don't want to make any assumptions about future versions
@@ -74,5 +74,14 @@ class ReleasesTests: XCTestCase {
         // Test excluding beta version
         let lastStableVersion = versions.withoutPreReleases().last.require()
         XCTAssertEqual(lastStableVersion, Version(major: 1, minor: 1))
+    }
+}
+
+extension ReleasesTests {
+    static var allTests: [(String, (ReleasesTests) -> () throws -> Void)] {
+        return [
+            ("testResolvingVersionsForRemoteRepository", testResolvingVersionsForRemoteRepository),
+            ("testResolvingVersionsForLocalRepository", testResolvingVersionsForLocalRepository)
+        ]
     }
 }

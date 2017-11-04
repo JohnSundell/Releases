@@ -126,3 +126,22 @@ class VersionTests: XCTestCase {
         XCTAssertEqual(unsorted.sorted(), expectedSorted)
     }
 }
+
+extension VersionTests {
+    static var allTests: [(String, (VersionTests) -> () throws -> Void)] {
+        return [
+            ("testParsingVersionWithOnlyMajorComponent", testParsingVersionWithOnlyMajorComponent),
+            ("testParsingVersionWithMinorComponent", testParsingVersionWithMinorComponent),
+            ("testParsingVersionWithPatchComponent", testParsingVersionWithPatchComponent),
+            ("testParsingVersionWithDashSuffix", testParsingVersionWithDashSuffix),
+            ("testParsingVersionWithPointSuffix", testParsingVersionWithPointSuffix),
+            ("testParsingVersionWithPrefix", testParsingVersionWithPrefix),
+            ("testParsingVersionWithUnwantedSuffix", testParsingVersionWithUnwantedSuffix),
+            ("testOriginalStringIntact", testOriginalStringIntact),
+            ("testParsingEmptyStringThrows", testParsingEmptyStringThrows),
+            ("testParsingMumboJumboThrows", testParsingMumboJumboThrows),
+            ("testParsingVersionWithInvalidComponentThrows", testParsingVersionWithInvalidComponentThrows),
+            ("testSorting", testSorting)
+        ]
+    }
+}
