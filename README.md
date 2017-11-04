@@ -9,7 +9,7 @@ filtering out pre-released versions, etc.
 Simply call `Releases.versions(for: url)` and you'll get an array of `Version` back:
 
 ```swift
-let url = URL(string: "git@github.com:johnsundell/unbox")!
+let url = URL(string: "https://github.com/johnsundell/unbox")!
 let releases = Releases.versions(for: url)
 
 // Print the latest version
@@ -19,7 +19,7 @@ print(releases.last)
 Remove all pre-release versions (like `Alpha`, `Beta`, etc):
 
 ```swift
-let url = URL(string: "git@github.com:johnsundell/unbox")!
+let url = URL(string: "https://github.com/johnsundell/unbox)!
 let releases = Releases.versions(for: url).withoutPreReleases()
 
 // Print the latest stable version
