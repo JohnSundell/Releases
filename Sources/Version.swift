@@ -84,9 +84,9 @@ public extension Version {
                                                      to: majorString.endIndex)
 
         let prefixEndIndex = firstComponent.index(firstComponent.endIndex, offsetBy: -majorStringLength)
-        let prefixString = firstComponent.substring(to: prefixEndIndex)
+        let prefixString = String(firstComponent[..<prefixEndIndex])
 
-        if prefixString.characters.count > 0 {
+        if prefixString.count > 0 {
             prefix = prefixString
         }
 
@@ -182,7 +182,7 @@ private extension Version {
         var component = component
         var number = Int(component)
 
-        while number == nil && component.characters.count > 0 {
+        while number == nil && component.count > 0 {
             switch direction {
             case .leading:
                 component.remove(at: component.startIndex)
