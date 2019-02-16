@@ -7,7 +7,7 @@
 import Foundation
 
 /// Structure representing a released version
-public struct Version {
+public struct Version: Codable {
     /// The major version of the release
     public var major: Int
     /// The minor version of the release (0 if missing)

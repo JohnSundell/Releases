@@ -6,8 +6,8 @@
         "repositoryURL": "https://github.com/JohnSundell/Require.git",
         "state": {
           "branch": null,
-          "revision": "81d415c392ca9c52c548a49c602104a7ca1e8b64",
-          "version": "2.0.0"
+          "revision": "7cfbd0d8a2dede0e01f6f0d8ab2c7acef1df112e",
+          "version": "2.0.1"
         }
       },
       {
@@ -15,8 +15,8 @@
         "repositoryURL": "https://github.com/JohnSundell/ShellOut.git",
         "state": {
           "branch": null,
-          "revision": "479a89d9bfa7585496bd4a3e4faffac5b01af37f",
-          "version": "2.0.0"
+          "revision": "d3d54ce662dfee7fef619330b71d251b8d4869f9",
+          "version": "2.2.0"
         }
       }
     ]
