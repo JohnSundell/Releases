@@ -19,7 +19,7 @@ print(releases.last)
 Remove all pre-release versions (like `Alpha`, `Beta`, etc):
 
 ```swift
-let url = URL(string: "https://github.com/johnsundell/unbox)!
+let url = URL(string: "https://github.com/johnsundell/unbox")!
 let releases = Releases.versions(for: url).withoutPreReleases()
 
 // Print the latest stable version
