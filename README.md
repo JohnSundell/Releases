@@ -13,7 +13,7 @@ let url = URL(string: "https://github.com/johnsundell/unbox")!
 let releases = Releases.versions(for: url)
 
 // Print the latest version
-print(releases.last)
+print(releases.max)
 ```
 
 Remove all pre-release versions (like `Alpha`, `Beta`, etc):
@@ -23,7 +23,7 @@ let url = URL(string: "https://github.com/johnsundell/unbox)!
 let releases = Releases.versions(for: url).withoutPreReleases()
 
 // Print the latest stable version
-print(releases.last)
+print(releases.max)
 ```
 
 ## Installation
