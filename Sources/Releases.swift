@@ -35,7 +35,7 @@ public class Releases {
     private static func string(from url: URL) throws -> String {
         do {
             if url.absoluteString.hasSuffix(".git") {
-                return try shellOut(to: "git ls-remote --tags \(url.absoluteString)")
+                return try shellOut(to: "git ls-remote --tags --sort=v:refname \(url.absoluteString)")
             } else {
                 let path = url.absoluteString.replacingOccurrences(of: "file://", with: "")
                 return try shellOut(to: "cd \"\(path)\" && git tag")
